@@ -11,34 +11,34 @@ import javax.swing.JPanel;
 
 class Surface extends JPanel {
 
-    private Image enotIMG;
+    private Image enotIMG; // переменная для картинки
 
-    public Surface() {
-        loadImage();
-        setSurfaceSize();
+    public Surface() { // конструктор
+        loadImage(); // загрузка
+        setSurfaceSize(); // размеры
     }
 
     private void loadImage() {
         enotIMG = new ImageIcon("enot.jpeg").getImage();
-    }
+    } // создаём картинку из файла
 
     private void setSurfaceSize() {
-
+        // установка размеров
         Dimension d = new Dimension();
         d.width = enotIMG.getWidth(null);
         d.height = enotIMG.getHeight(null);
         setPreferredSize(d);
     }
 
-    private void doDrawing(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(enotIMG, 0, 0, null);
+    private void doDrawing(Graphics g) { // прорисовка эл.
+        Graphics2D g2d = (Graphics2D) g; // графика
+        g2d.drawImage(enotIMG, 0, 0, null); // картинка
     }
 
     @Override
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) { // зарисовка компонента
         super.paintComponent(g);
-        doDrawing(g);
+        doDrawing(g); // вызов прорисовки компонента
     }
 }
 
@@ -46,23 +46,23 @@ public class DisplayImageEx extends JFrame {
 
     public DisplayImageEx() {
         initUI();
-    }
+    } // конструктор с инициализацией
 
-    private void initUI() {
-        add(new Surface());
+    private void initUI() { // инициализация
+        add(new Surface()); // наш объект
         pack();
-        setTitle("enot");
+        setTitle("enot"); // имя
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // выход
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { // главный класс
 
-        EventQueue.invokeLater(new Runnable() {
+        EventQueue.invokeLater(new Runnable() { // поток
             @Override
-            public void run() {
-                DisplayImageEx ex = new DisplayImageEx();
-                ex.setVisible(true);
+            public void run() { // запуск
+                DisplayImageEx ex = new DisplayImageEx(); // создание нашего класса
+                ex.setVisible(true); // видимость
             }
         });
     }
