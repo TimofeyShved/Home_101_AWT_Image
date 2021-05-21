@@ -21,13 +21,13 @@ class BlurredImageSurface extends JPanel {
     private BufferedImage enotIMG;
     private BufferedImage bluri;
 
-    public BlurredImageSurface() {
-        loadImage();
-        createBlurredImage();
-        setSurfaceSize();
+    public BlurredImageSurface() { // конструктор
+        loadImage(); // загрузка
+        createBlurredImage(); // создание фильтра
+        setSurfaceSize(); // размеры
     }
 
-    private void loadImage() {
+    private void loadImage() { // создаём картинку из файла
         try {
             enotIMG = ImageIO.read(new File("enot.jpeg"));
         } catch (IOException ex) {
@@ -36,7 +36,7 @@ class BlurredImageSurface extends JPanel {
         }
     }
 
-    private void createBlurredImage() {
+    private void createBlurredImage() { // создание маски
         float[] blurKernel = {
                 1 / 9f, 1 / 9f, 1 / 9f,
                 1 / 9f, 1 / 9f, 1 / 9f,
@@ -48,45 +48,45 @@ class BlurredImageSurface extends JPanel {
                 enotIMG.getHeight(), enotIMG.getType()));
     }
 
-    private void setSurfaceSize() {
+    private void setSurfaceSize() { // установка размеров
         Dimension d = new Dimension();
         d.width = enotIMG.getWidth(null);
         d.height = enotIMG.getHeight(null);
         setPreferredSize(d);
     }
 
-    private void doDrawing(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(bluri, null, 0, 0);
+    private void doDrawing(Graphics g) { // прорисовка эл.
+        Graphics2D g2d = (Graphics2D) g; // графика
+        g2d.drawImage(bluri, null, 0, 0); // картинка
     }
 
     @Override
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) { // зарисовка компонента
         super.paintComponent(g);
-        doDrawing(g);
+        doDrawing(g); // вызов прорисовки компонента
     }
 }
 
 public class BlurredImageEx extends JFrame {
 
-    public BlurredImageEx() {
+    public BlurredImageEx() { // конструктор
         setTitle("Blurred image");
-        add(new BlurredImageSurface());
+        add(new BlurredImageSurface()); // наш объект
 
         pack();
 
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // выход
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { // нглавный класс
 
-        EventQueue.invokeLater(new Runnable() {
+        EventQueue.invokeLater(new Runnable() {  // поток
             @Override
-            public void run() {
+            public void run() {  // запуск
 
-                BlurredImageEx ex = new BlurredImageEx();
-                ex.setVisible(true);
+                BlurredImageEx ex = new BlurredImageEx();// создание нашего класса
+                ex.setVisible(true); // видимость
             }
         });
     }
