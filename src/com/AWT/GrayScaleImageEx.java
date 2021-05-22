@@ -45,7 +45,7 @@ class GrayScaleImageSurface extends JPanel {
 
     private void doDrawing(Graphics g) { // прорисовка эл.
         Graphics2D g2d = (Graphics2D) g; // графика
-        g2d.drawImage(enotIMG, 0, 0, null); // картинка
+        g2d.drawImage(bufimg, null, 0, 0); // картинка
     }
 
     @Override
